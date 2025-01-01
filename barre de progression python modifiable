@@ -1,0 +1,22 @@
+import sys
+import time
+
+
+def barre_progression_decroissante(duree_totale):
+    increments = 100
+    intervalle = duree_totale / increments
+    progression = increments
+
+    print("Début du compte à rebours :")
+    while progression >= 0:
+        pourcentage = (progression / increments) * 10
+        barre = "█" * progression + " " * (increments - progression)
+        sys.stdout.write(f"\rProgression : |{barre}| {pourcentage:.2f}")
+        sys.stdout.flush()
+        time.sleep(intervalle)
+        progression -= 1
+
+    print("\nTemps écoulé !")
+
+barre_progression_decroissante(10)
+
