@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Topic</title>
+</head>
+<body class="p-2">
+<nav aria-label="breadcrumb" class="bg-secondary-subtle rounded">
+    <ol class="breadcrumb p-2">
+        <li class="breadcrumb-item"><a href="main.html">Home</a></li>
+        <li id="lang" class="breadcrumb-item" aria-current="page"></li>
+        <li id="exercise" class="breadcrumb-item active" aria-current="page"></li>
+    </ol>
+</nav>
+
+<h1 id="title_lesson"></h1>
+
+<div id="lesson_content" class="border border-secondary rounded p-2"></div>
+
+</body>
+<script type="text/javascript" src="/eel.js"></script>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang');
+    const lang_id = urlParams.get('lang_id');
+    document.getElementById('lang').innerHTML = `<a href="topic.html?lang=${lang}&lang_id=${lang_id}">${lang}</a>`;
+    const topic_id = urlParams.get('topic_id');
+    const topic = urlParams.get('topic');
+    document.getElementById('exercise').innerHTML = topic + ` (Cours)`;
+    document.getElementById('title_lesson').innerHTML = topic + ` (Cours)`;
+    eel.get_lesson_content_from_topic_id(topic_id)().then(data => {
+        document.getElementById('lesson_content').innerHTML = data[0];
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+</html>
